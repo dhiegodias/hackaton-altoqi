@@ -1,0 +1,71 @@
+name: radar-crm
+
+x-app: &app
+  build: .
+  image: ${RADAR_IMAGE:-radar-crm:local}
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - radar_secrets:/run/radar-secrets:ro
+  depends_on:
+    bootstrap:
+      condition: service_completed_successfully
+    db:
+      condition: service_healthy
+  restart: unless-stopped
+  init: true
+
+services:
+  bootstrap:
+    build: .
+    image: ${RADAR_IMAGE:-radar-crm:local}
+    user: "0:0"
+    command: [bootstrap]
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-}
+      RADAR_ERASURE_KEY: ${RADAR_ERASURE_KEY:-}
+    volumes:
+      - radar_secrets:/run/radar-secrets
+    restart: "no"
+
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: radar
+      POSTGRES_USER: radar
+      POSTGRES_PASSWORD_FILE: /run/radar-secrets/postgres_password
+    volumes:
+      - radar_data:/var/lib/postgresql
+      - radar_secrets:/run/radar-secrets:ro
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U radar -d radar]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  app:
+    <<: *app
+    ports:
+      - ${RADAR_BIND:-127.0.0.1}:${RADAR_PORT:-8787}:8000
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  worker:
+    <<: *app
+    command: [python, -m, radar.worker]
+
+  transfer-worker:
+    <<: *app
+    command: [python, -m, radar.transfer_worker]
+
+volumes:
+  radar_data:
+  radar_secrets:

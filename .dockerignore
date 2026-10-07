@@ -1,0 +1,14 @@
+**
+!Dockerfile
+!requirements.lock.txt
+!pyproject.toml
+!radar/
+!radar/**
+!static/
+!static/**
+!tests/
+!tests/**
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
