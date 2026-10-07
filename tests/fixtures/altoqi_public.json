@@ -1,0 +1,103 @@
+{
+  "observed_at": "2026-10-03T22:19:45.867136+00:00",
+  "company": "AltoQi",
+  "legal_name": "S3ENG - TECNOLOGIA APLICADA A ENGENHARIA LTDA",
+  "cnpj": "04305879000130",
+  "corporate_registry_snapshot": {
+    "cnpj": "04305879000130",
+    "razao_social": "S3ENG - TECNOLOGIA APLICADA A ENGENHARIA LTDA",
+    "nome_fantasia": "ALTOQI",
+    "capital_social": 26161616,
+    "cnae_fiscal": 6203100,
+    "cnae_fiscal_descricao": "Desenvolvimento e licenciamento de programas de computador não-customizáveis",
+    "porte": "DEMAIS",
+    "municipio": "FLORIANOPOLIS",
+    "uf": "SC",
+    "descricao_situacao_cadastral": "ATIVA"
+  },
+  "social_links_in_official_site": [
+    "https://br.linkedin.com/company/altoqi-tecnologia",
+    "https://instagram.com/altoqitecnologia/"
+  ],
+  "site_automatic_suggestions": [],
+  "proposals": [
+    {
+      "field": "capital_social",
+      "value": 26161616.0,
+      "source_kind": "registry",
+      "source_url": "https://brasilapi.com.br/api/cnpj/v1/04305879000130",
+      "evidence": "BrasilAPI (agregador cadastral), CNPJ 04305879000130. capital_social: 26161616",
+      "confidence": 95
+    },
+    {
+      "field": "cnae",
+      "value": "6203100",
+      "source_kind": "registry",
+      "source_url": "https://brasilapi.com.br/api/cnpj/v1/04305879000130",
+      "evidence": "BrasilAPI (agregador cadastral), CNPJ 04305879000130. cnae_fiscal: 6203100",
+      "confidence": 95
+    },
+    {
+      "field": "company_size",
+      "value": "DEMAIS",
+      "source_kind": "registry",
+      "source_url": "https://brasilapi.com.br/api/cnpj/v1/04305879000130",
+      "evidence": "BrasilAPI (agregador cadastral), CNPJ 04305879000130. porte: DEMAIS",
+      "confidence": 95
+    },
+    {
+      "field": "city",
+      "value": "FLORIANOPOLIS",
+      "source_kind": "registry",
+      "source_url": "https://brasilapi.com.br/api/cnpj/v1/04305879000130",
+      "evidence": "BrasilAPI (agregador cadastral), CNPJ 04305879000130. municipio: FLORIANOPOLIS",
+      "confidence": 95
+    },
+    {
+      "field": "state",
+      "value": "SC",
+      "source_kind": "registry",
+      "source_url": "https://brasilapi.com.br/api/cnpj/v1/04305879000130",
+      "evidence": "BrasilAPI (agregador cadastral), CNPJ 04305879000130. uf: SC",
+      "confidence": 95
+    },
+    {
+      "field": "website",
+      "value": "https://www.altoqi.com.br/home",
+      "source_kind": "manual",
+      "source_url": "https://www.altoqi.com.br/home",
+      "evidence": "Site oficial da AltoQi aberto e conferido durante a validação.",
+      "confidence": 95
+    },
+    {
+      "field": "cnpj",
+      "value": "04305879000130",
+      "source_kind": "manual",
+      "source_url": "https://www.qicloud.com.br/app/loginActivationContract",
+      "evidence": "Contrato público AltoQi Cloud identifica S3ENG, detentora da marca AltoQi, pelo CNPJ 04.305.879/0001-30.",
+      "confidence": 95
+    },
+    {
+      "field": "linkedin",
+      "value": "https://www.linkedin.com/company/altoqi-tecnologia",
+      "source_kind": "manual",
+      "source_url": "https://www.altoqi.com.br/home",
+      "evidence": "Link corporativo publicado no site: https://br.linkedin.com/company/altoqi-tecnologia. Revisão manual normalizou br.linkedin.com para www.linkedin.com, preservando /company/altoqi-tecnologia.",
+      "confidence": 85
+    },
+    {
+      "field": "instagram",
+      "value": "https://instagram.com/altoqitecnologia/",
+      "source_kind": "manual",
+      "source_url": "https://www.altoqi.com.br/home",
+      "evidence": "Link corporativo publicado no site oficial: https://instagram.com/altoqitecnologia/.",
+      "confidence": 85
+    }
+  ],
+  "limitations": [
+    "Capital e cadastro vêm da BrasilAPI, um agregador; consulta não equivale a certidão fiscal.",
+    "Site e redes sociais foram conferidos manualmente; o coletor não os descobriu automaticamente nesta página.",
+    "Não há confirmação de cargo, decisor, quantidade atual de funcionários ou fit da AltoQi como cliente.",
+    "Os contatos e o ID do destino de teste são fictícios. Nenhuma escrita em portal HubSpot real."
+  ]
+}

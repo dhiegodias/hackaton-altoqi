@@ -1,0 +1,813 @@
+{
+  "description": "100 pessoas inteiramente fictícias, geradas para validar importação. Não são funcionários da AltoQi. Sites e e-mails .invalid não são destinos reais.",
+  "headers": [
+    "Nome completo",
+    "E-mail",
+    "Empresa",
+    "Cargo",
+    "Funcionários",
+    "Site"
+  ],
+  "rows": [
+    [
+      "Ana Almeida (Teste 001)",
+      "contato001@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Engenheira",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Bruno Almeida (Teste 002)",
+      "contato002@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Projetista",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Cecília Almeida (Teste 003)",
+      "contato003@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Coordenador de projetos",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Diego Almeida (Teste 004)",
+      "contato004@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Analista BIM",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Érica Almeida (Teste 005)",
+      "contato005@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Arquiteta",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Fábio Almeida (Teste 006)",
+      "contato006@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Engenheira",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Gabriela Almeida (Teste 007)",
+      "contato007@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Projetista",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Hélio Almeida (Teste 008)",
+      "contato008@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Coordenador de projetos",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Íris Almeida (Teste 009)",
+      "contato009@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Analista BIM",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "João Almeida (Teste 010)",
+      "contato010@radar-validacao.invalid",
+      "Empresa fictícia 01",
+      "Arquiteta",
+      0,
+      "https://empresa-01.invalid"
+    ],
+    [
+      "Ana Barbosa (Teste 011)",
+      "contato011@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Engenheira",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Bruno Barbosa (Teste 012)",
+      "contato012@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Projetista",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Cecília Barbosa (Teste 013)",
+      "contato013@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Coordenador de projetos",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Diego Barbosa (Teste 014)",
+      "contato014@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Analista BIM",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Érica Barbosa (Teste 015)",
+      "contato015@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Arquiteta",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Fábio Barbosa (Teste 016)",
+      "contato016@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Engenheira",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Gabriela Barbosa (Teste 017)",
+      "contato017@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Projetista",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Hélio Barbosa (Teste 018)",
+      "contato018@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Coordenador de projetos",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Íris Barbosa (Teste 019)",
+      "contato019@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Analista BIM",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "João Barbosa (Teste 020)",
+      "contato020@radar-validacao.invalid",
+      "Empresa fictícia 02",
+      "Arquiteta",
+      10,
+      "https://empresa-02.invalid"
+    ],
+    [
+      "Ana Cardoso (Teste 021)",
+      "contato021@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Engenheira",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Bruno Cardoso (Teste 022)",
+      "contato022@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Projetista",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Cecília Cardoso (Teste 023)",
+      "contato023@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Coordenador de projetos",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Diego Cardoso (Teste 024)",
+      "contato024@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Analista BIM",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Érica Cardoso (Teste 025)",
+      "contato025@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Arquiteta",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Fábio Cardoso (Teste 026)",
+      "contato026@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Engenheira",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Gabriela Cardoso (Teste 027)",
+      "contato027@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Projetista",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Hélio Cardoso (Teste 028)",
+      "contato028@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Coordenador de projetos",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Íris Cardoso (Teste 029)",
+      "contato029@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Analista BIM",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "João Cardoso (Teste 030)",
+      "contato030@radar-validacao.invalid",
+      "Empresa fictícia 03",
+      "Arquiteta",
+      20,
+      "https://empresa-03.invalid"
+    ],
+    [
+      "Ana Dias (Teste 031)",
+      "contato031@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Engenheira",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Bruno Dias (Teste 032)",
+      "contato032@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Projetista",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Cecília Dias (Teste 033)",
+      "contato033@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Coordenador de projetos",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Diego Dias (Teste 034)",
+      "contato034@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Analista BIM",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Érica Dias (Teste 035)",
+      "contato035@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Arquiteta",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Fábio Dias (Teste 036)",
+      "contato036@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Engenheira",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Gabriela Dias (Teste 037)",
+      "contato037@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Projetista",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Hélio Dias (Teste 038)",
+      "contato038@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Coordenador de projetos",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Íris Dias (Teste 039)",
+      "contato039@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Analista BIM",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "João Dias (Teste 040)",
+      "contato040@radar-validacao.invalid",
+      "Empresa fictícia 04",
+      "Arquiteta",
+      30,
+      "https://empresa-04.invalid"
+    ],
+    [
+      "Ana Esteves (Teste 041)",
+      "contato041@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Engenheira",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Bruno Esteves (Teste 042)",
+      "contato042@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Projetista",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Cecília Esteves (Teste 043)",
+      "contato043@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Coordenador de projetos",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Diego Esteves (Teste 044)",
+      "contato044@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Analista BIM",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Érica Esteves (Teste 045)",
+      "contato045@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Arquiteta",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Fábio Esteves (Teste 046)",
+      "contato046@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Engenheira",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Gabriela Esteves (Teste 047)",
+      "contato047@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Projetista",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Hélio Esteves (Teste 048)",
+      "contato048@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Coordenador de projetos",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Íris Esteves (Teste 049)",
+      "contato049@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Analista BIM",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "João Esteves (Teste 050)",
+      "contato050@radar-validacao.invalid",
+      "Empresa fictícia 05",
+      "Arquiteta",
+      40,
+      "https://empresa-05.invalid"
+    ],
+    [
+      "Ana Freitas (Teste 051)",
+      "contato051@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Engenheira",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Bruno Freitas (Teste 052)",
+      "contato052@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Projetista",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Cecília Freitas (Teste 053)",
+      "contato053@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Coordenador de projetos",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Diego Freitas (Teste 054)",
+      "contato054@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Analista BIM",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Érica Freitas (Teste 055)",
+      "contato055@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Arquiteta",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Fábio Freitas (Teste 056)",
+      "contato056@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Engenheira",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Gabriela Freitas (Teste 057)",
+      "contato057@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Projetista",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Hélio Freitas (Teste 058)",
+      "contato058@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Coordenador de projetos",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Íris Freitas (Teste 059)",
+      "contato059@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Analista BIM",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "João Freitas (Teste 060)",
+      "contato060@radar-validacao.invalid",
+      "Empresa fictícia 06",
+      "Arquiteta",
+      50,
+      "https://empresa-06.invalid"
+    ],
+    [
+      "Ana Gonçalves (Teste 061)",
+      "contato061@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Engenheira",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Bruno Gonçalves (Teste 062)",
+      "contato062@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Projetista",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Cecília Gonçalves (Teste 063)",
+      "contato063@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Coordenador de projetos",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Diego Gonçalves (Teste 064)",
+      "contato064@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Analista BIM",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Érica Gonçalves (Teste 065)",
+      "contato065@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Arquiteta",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Fábio Gonçalves (Teste 066)",
+      "contato066@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Engenheira",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Gabriela Gonçalves (Teste 067)",
+      "contato067@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Projetista",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Hélio Gonçalves (Teste 068)",
+      "contato068@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Coordenador de projetos",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Íris Gonçalves (Teste 069)",
+      "contato069@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Analista BIM",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "João Gonçalves (Teste 070)",
+      "contato070@radar-validacao.invalid",
+      "Empresa fictícia 07",
+      "Arquiteta",
+      60,
+      "https://empresa-07.invalid"
+    ],
+    [
+      "Ana Henriques (Teste 071)",
+      "contato071@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Engenheira",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Bruno Henriques (Teste 072)",
+      "contato072@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Projetista",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Cecília Henriques (Teste 073)",
+      "contato073@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Coordenador de projetos",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Diego Henriques (Teste 074)",
+      "contato074@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Analista BIM",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Érica Henriques (Teste 075)",
+      "contato075@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Arquiteta",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Fábio Henriques (Teste 076)",
+      "contato076@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Engenheira",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Gabriela Henriques (Teste 077)",
+      "contato077@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Projetista",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Hélio Henriques (Teste 078)",
+      "contato078@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Coordenador de projetos",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Íris Henriques (Teste 079)",
+      "contato079@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Analista BIM",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "João Henriques (Teste 080)",
+      "contato080@radar-validacao.invalid",
+      "Empresa fictícia 08",
+      "Arquiteta",
+      70,
+      "https://empresa-08.invalid"
+    ],
+    [
+      "Ana Iglesias (Teste 081)",
+      "contato081@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Engenheira",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Bruno Iglesias (Teste 082)",
+      "contato082@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Projetista",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Cecília Iglesias (Teste 083)",
+      "contato083@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Coordenador de projetos",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Diego Iglesias (Teste 084)",
+      "contato084@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Analista BIM",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Érica Iglesias (Teste 085)",
+      "contato085@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Arquiteta",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Fábio Iglesias (Teste 086)",
+      "contato086@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Engenheira",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Gabriela Iglesias (Teste 087)",
+      "contato087@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Projetista",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Hélio Iglesias (Teste 088)",
+      "contato088@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Coordenador de projetos",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Íris Iglesias (Teste 089)",
+      "contato089@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Analista BIM",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "João Iglesias (Teste 090)",
+      "contato090@radar-validacao.invalid",
+      "Empresa fictícia 09",
+      "Arquiteta",
+      80,
+      "https://empresa-09.invalid"
+    ],
+    [
+      "Ana Jardim (Teste 091)",
+      "contato091@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Engenheira",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Bruno Jardim (Teste 092)",
+      "contato092@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Projetista",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Cecília Jardim (Teste 093)",
+      "contato093@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Coordenador de projetos",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Diego Jardim (Teste 094)",
+      "contato094@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Analista BIM",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Érica Jardim (Teste 095)",
+      "contato095@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Arquiteta",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Fábio Jardim (Teste 096)",
+      "contato096@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Engenheira",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Gabriela Jardim (Teste 097)",
+      "contato097@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Projetista",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Hélio Jardim (Teste 098)",
+      "contato098@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Coordenador de projetos",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "Íris Jardim (Teste 099)",
+      "contato099@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Analista BIM",
+      90,
+      "https://empresa-10.invalid"
+    ],
+    [
+      "João Jardim (Teste 100)",
+      "contato100@radar-validacao.invalid",
+      "Empresa fictícia 10",
+      "Arquiteta",
+      90,
+      "https://empresa-10.invalid"
+    ]
+  ]
+}
