@@ -1,0 +1,27 @@
+# Execute separadamente: docker compose -f compose.tunnel.yaml up -d
+# A aplicação precisa estar rodando. Este arquivo não altera app, workers ou banco.
+name: radar-tunnel
+
+services:
+  tunnel:
+    image: cloudflare/cloudflared:2026.9.3
+    # Loopback do app preserva HTTPS via proxy sem confiar em qualquer IP da rede.
+    network_mode: "container:${RADAR_TUNNEL_CONTAINER:-radar-crm-app-1}"
+    command:
+      - tunnel
+      - --no-autoupdate
+      - --metrics
+      - 127.0.0.1:20241
+      - --url
+      - http://127.0.0.1:8000
+      - --allowed-mail
+      - "${TUNNEL_ALLOWED_EMAILS:?Preencha TUNNEL_ALLOWED_EMAILS no .env com os e-mails autorizados}"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"

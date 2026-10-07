@@ -55,6 +55,8 @@ Edite `.env` e reaplique com `docker compose up --build -d --wait`. O arquivo co
 | `DEMO_MODE` | `true`: carrega dados fictícios em uma base nova e permite uso local sem login. |
 | `RADAR_ACCESS_TOKEN` | Chave de acesso da equipe, obrigatória quando `DEMO_MODE=false`. |
 | `COOKIE_SECURE` | `false` no HTTP local; `true` ao usar HTTPS. |
+| `TUNNEL_ALLOWED_EMAILS` | E-mails ou domínio autorizados no link temporário; obrigatório apenas no Compose do túnel. |
+| `RADAR_TUNNEL_CONTAINER` | Container da aplicação ao qual o túnel se conecta; padrão `radar-crm-app-1`. |
 | `OPENAI_API_KEY` / `OPENAI_MODEL` | Pesquisa e interpretação por IA opcionais. |
 | `HUBSPOT_ACCESS_TOKEN` | Token do portal para importar contatos e, se habilitado, enviar alterações. |
 | `HUBSPOT_WRITE_ENABLED` | `false`: impede escrita real mesmo com token configurado. |
@@ -85,7 +87,39 @@ O envio exige campos aprovados, evidências vigentes, prévia e confirmação. C
 
 A rota `/campo` pode ser instalada como PWA. Abra conectado uma vez e aguarde **Acesso offline preparado**. Depois, rascunhos e registros pendentes permanecem no navegador; a fila envia quando a conexão retorna com o aplicativo aberto ou na próxima abertura. Envio com o aplicativo fechado não é garantido.
 
-Para outros celulares acessarem, configure endereço acessível, chave da equipe e **HTTPS**; `localhost` aponta para o próprio aparelho. Instalação e reabertura offline normalmente exigem HTTPS, exceto no localhost. O Compose inclui HTTP local; não provisiona domínio ou certificado. Não limpe os dados do navegador enquanto houver registros pendentes.
+Para outros celulares acessarem, configure endereço acessível, controle de acesso e **HTTPS**; `localhost` aponta para o próprio aparelho. Instalação e reabertura offline normalmente exigem HTTPS, exceto no localhost. O túnel opcional abaixo fornece HTTPS e controle de acesso por e-mail. Não limpe os dados do navegador enquanto houver registros pendentes.
+
+### Compartilhar no hackathon: link temporário HTTPS
+
+O [Quick Tunnel da Cloudflare](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/) fornece um endereço `https://….trycloudflare.com`, sem conta ou domínio próprio. A máquina continua hospedando o Busqi: mantenha Docker, internet e computador ligados. Não é necessário abrir portas no roteador.
+
+1. Inicie a aplicação com `docker compose up --build -d --wait`.
+2. Se ainda não existir `.env`, copie `.env.example` para `.env`. **Não sobrescreva uma configuração existente.** Preencha `TUNNEL_ALLOWED_EMAILS` com os e-mails do time, separados por vírgulas, ou um domínio autorizado, como `*@example.com`. O visitante receberá um código por e-mail antes de acessar a aplicação.
+3. Inicie o túnel e consulte o link:
+
+```bash
+docker compose -f compose.tunnel.yaml up -d
+docker compose -f compose.tunnel.yaml logs --tail=50 tunnel
+```
+
+Compartilhe o endereço HTTPS exibido no log. O painel usa a raiz desse endereço; a captura no celular usa `/campo`. Este Compose publica **a base do container escolhido**, com as mesmas permissões para todos os visitantes autorizados. A configuração exige a lista de e-mails; não abre um link sem proteção quando ela está vazia. O túnel não recebe credenciais do banco, OpenAI ou HubSpot.
+
+Se você usa outro projeto Compose, confira o nome do container com `docker ps` e ajuste `RADAR_TUNNEL_CONTAINER`. Por exemplo, o ambiente local da porta 8791 pode usar `radar-backfill-app-1`. O túnel se conecta à porta interna 8000, independentemente da porta publicada no computador. Ele compartilha a rede desse container para preservar o HTTPS encaminhado ao app e sua verificação de origem.
+
+O controle por e-mail é do Cloudflare, não cria usuários no Busqi. Se `RADAR_ACCESS_TOKEN` também estiver configurado, o login da equipe continuará sendo exigido dentro da aplicação; para esse uso por HTTPS, configure `COOKIE_SECURE=true` e reaplique o Compose da aplicação antes de iniciar o túnel.
+
+**O endereço muda ao recriar ou reiniciar o túnel.** Rascunhos, instalação da PWA e fila offline pertencem ao endereço usado pelo celular. Envie os registros pendentes antes de trocar de link; eles não migram automaticamente para o novo endereço. Se a sessão do Cloudflare expirar, será necessário entrar novamente com internet para enviar a fila. Para uso contínuo da PWA, prefira um [túnel com domínio fixo](https://developers.cloudflare.com/tunnel/get-started/).
+
+```bash
+# Encerrar apenas o acesso externo; aplicação e banco continuam rodando
+docker compose -f compose.tunnel.yaml stop
+
+# Depois de recriar o container app ou alterar os e-mails autorizados:
+docker compose -f compose.tunnel.yaml up -d --force-recreate
+docker compose -f compose.tunnel.yaml logs --tail=50 tunnel
+```
+
+O Quick Tunnel não tem garantia de disponibilidade, limita a 200 requisições simultâneas e não suporta SSE. As filas do Busqi consultam o progresso por HTTP e continuam processando localmente se o túnel cair. O limite de upload do Cloudflare também se aplica: o tamanho máximo configurado no Busqi não garante que todo arquivo desse tamanho passe pelo túnel.
 
 ## Operação e limites
 
