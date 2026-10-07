@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0e2829" />
+    <meta
+      name="description"
+      content="Busqi: dados com evidência e a próxima conversa comercial."
+    />
+    <title>Busqi · AltoQi</title>
+    <link rel="icon" href="/static/icon.svg?v=busqi-1" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/static/fonts/nunito-variable.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/static/brand.css?v=busqi-1" />
+    <link rel="stylesheet" href="/static/app.css?v=busqi-1" />
+    <script type="module" src="/static/app.js?v=busqi-1"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Ir ao conteúdo</a>
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Busqi — início"
+        ><img
+          class="brand-wordmark"
+          src="/static/brand/busqi-logo.svg?v=busqi-1"
+          width="170"
+          height="58"
+          alt="busqi" /><img
+          class="brand-symbol"
+          src="/static/icon.svg?v=busqi-1"
+          width="44"
+          height="44"
+          alt=""
+      /></a>
+      <div class="workspace">
+        <span class="workspace-icon">A</span>
+        <div><strong>AltoQi</strong><small>Inteligência comercial</small></div>
+        <span class="workspace-arrow">⌄</span>
+      </div>
+      <span class="nav-label">OPERAÇÃO</span>
+      <nav aria-label="Navegação principal">
+        <button data-view="dashboard" class="nav-button active">
+          <span data-icon="radar"></span>Radar da base
+        </button>
+        <button data-view="contacts" class="nav-button">
+          <span data-icon="users"></span>Contatos
+        </button>
+        <button data-view="transfers" class="nav-button">
+          <span data-icon="upload"></span>Listas e exportações
+        </button>
+        <button data-view="outbound" class="nav-button">
+          <span data-icon="search"></span>Prospecção outbound
+        </button>
+        <button data-view="backfill" class="nav-button">
+          <span data-icon="spark"></span>Backfill
+        </button>
+        <button data-view="review" class="nav-button">
+          <span data-icon="checklist"></span>Revisão<span
+            id="review-count"
+            class="nav-count"
+            >0</span
+          >
+        </button>
+        <a href="/campo" class="nav-button"
+          ><span data-icon="phone"></span>Captura em campo<span class="external"
+            >↗</span
+          ></a
+        >
+      </nav>
+      <span class="nav-label second">CONFIGURAÇÃO</span>
+      <nav aria-label="Configuração">
+        <button data-view="sources" class="nav-button">
+          <span data-icon="sliders"></span>Fontes e regras
+        </button>
+        <button data-view="standard" class="nav-button">
+          <span data-icon="checklist"></span>Padrão de dados
+        </button>
+        <button data-view="calibration" class="nav-button">
+          <span data-icon="chart"></span>Pesos e calibração
+        </button>
+        <button data-view="audit" class="nav-button">
+          <span data-icon="clock"></span>Auditoria
+        </button>
+      </nav>
+      <div class="field-promo">
+        <span data-icon="phone"></span
+        ><strong>Boas conversas<br />viram bons dados.</strong>
+        <p>Leve o Busqi para a visita.<br />Funciona até sem conexão.</p>
+        <a href="/campo">Abrir captura <span>↗</span></a>
+      </div>
+      <div class="sidebar-foot">
+        <span class="avatar">AQ</span>
+        <div>
+          <strong>Equipe AltoQi</strong><small>Hackathon · Busqi</small>
+        </div>
+      </div>
+    </aside>
+    <div class="workspace-main">
+      <header class="topbar">
+        <div>
+          <a class="mobile-brand" href="/" aria-label="Busqi — início"
+            ><img
+              src="/static/brand/busqi-logo.svg?v=busqi-1"
+              width="105"
+              height="36"
+              alt="busqi" /></a
+          ><span class="muted">AltoQi</span><span class="crumb">/</span
+          ><strong id="breadcrumb">Radar da base</strong>
+        </div>
+        <div class="topbar-right">
+          <span id="mode" class="mode-tag">Ambiente local</span
+          ><span class="team-dot">AQ</span>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div class="loading">
+          <span class="spinner"></span>Carregando seu radar…
+        </div>
+      </main>
+      <footer class="main-foot">
+        <span>Busqi <b>·</b> Feito para conversas mais relevantes.</span
+        ><span id="live-indicator"><i></i>Atualizado agora</span>
+      </footer>
+    </div>
+    <dialog
+      id="detail-dialog"
+      class="detail-dialog"
+      aria-label="Detalhes do contato"
+    >
+      <div id="detail-content"></div>
+    </dialog>
+    <dialog id="modal" class="modal"><div id="modal-content"></div></dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

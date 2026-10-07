@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("/static/fonts/nunito-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+}
+
+:root {
+  --brand-ink: #0e2829;
+  --brand-violet: #4d399c;
+  --brand-violet-dark: #3c287f;
+  --brand-plume: #7565ea;
+  --brand-celadon: #a4dcb5;
+  --brand-paper: #eef4f0;
+  --brand-muted: #5f726d;
+  --brand-line: #dce6df;
+  --brand-violet-soft: #eeebf8;
+  --brand-green: #28684f;
+  --brand-display-font: "Nunito", "Segoe UI", sans-serif;
+  --brand-body-font: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
