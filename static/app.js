@@ -126,12 +126,39 @@ function toast(message) {
   toast.timer = setTimeout(() => node.classList.remove("show"), 5000);
 }
 async function api(path, options = {}) {
-  const opts = { ...options, headers: { ...options.headers } };
+  const opts = {
+    ...options,
+    headers: { ...options.headers },
+    credentials: "same-origin",
+    // Login do proxy deve ocorrer numa navegação, nunca dentro de um fetch.
+    redirect: "manual",
+  };
   if (opts.body && !(opts.body instanceof FormData)) {
     opts.headers["Content-Type"] = "application/json";
     opts.body = JSON.stringify(opts.body);
   }
-  const response = await fetch("/api" + path, opts);
+  let response;
+  try {
+    response = await fetch("/api" + path, opts);
+  } catch {
+    throw new Error(
+      "Não foi possível conectar ao Busqi. Confira a conexão e tente novamente.",
+    );
+  }
+  const json = response.headers
+    .get("content-type")
+    ?.includes("application/json");
+  if (
+    response.type === "opaqueredirect" ||
+    (response.status === 401 && !json)
+  ) {
+    $("#access-notice").hidden = false;
+    $("#access-renew").href = location.pathname + location.hash;
+    throw new Error(
+      "Seu acesso precisa ser renovado. Use Entrar novamente e depois repita a ação.",
+    );
+  }
+  if (response.ok && json) $("#access-notice").hidden = true;
   let data;
   try {
     data = await response.json();
@@ -769,7 +796,11 @@ window.addEventListener("hashchange", async () => {
   if (view !== state.view && names[view]) {
     state.view = view;
     state.leadPage = 1;
-    await reload();
+    try {
+      await reload();
+    } catch (error) {
+      toast(error.message);
+    }
   }
 });
 for (const dialog of [$("#detail-dialog"), $("#modal")])
