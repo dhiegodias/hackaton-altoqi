@@ -1,0 +1,360 @@
+{
+  "consulted_at": "2026-10-03T23:38:58.535569+00:00",
+  "source": "Live public website research, no HubSpot write",
+  "input": {
+    "name": "Maria Porfiro",
+    "company": "AltoQi",
+    "email": "",
+    "data": {
+      "cnpj": "04305879000130",
+      "website": "https://www.altoqi.com.br/home"
+    },
+    "qualification": {}
+  },
+  "proposals": [
+    {
+      "field": "decision_role",
+      "value": "Provável influenciador",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/carreiras",
+      "evidence": "Maria Porfiro\nMarketing Specialist",
+      "confidence": 76,
+      "assessment": {
+        "kind": "inference",
+        "rule": "buying-role-from-public-title",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Cargo sugere participação na decisão; não comprova alçada, orçamento ou intenção de compra. Confirmar no contato comercial. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 10,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "Maria Porfiro\nMarketing Specialist",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    },
+    {
+      "field": "employee_range",
+      "value": "300+",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/institucional",
+      "evidence": "+ de 300\ncolaboradores",
+      "confidence": 81,
+      "assessment": {
+        "kind": "estimate",
+        "rule": "public-headcount-statement",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Escala publicada pela empresa; faixa/limite inferior fica separado da quantidade exata. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 15,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/institucional",
+            "quote": "+ de 300\ncolaboradores",
+            "title": "Institucional - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:57.862951+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    },
+    {
+      "field": "instagram",
+      "value": "https://www.instagram.com/altoqitecnologia",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/home",
+      "evidence": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+      "confidence": 91,
+      "assessment": {
+        "kind": "fact",
+        "rule": "official-social-link",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Link corporativo no site informado; LinkedIn regional normalizado, sem raspar rede social. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 25,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/home",
+            "quote": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+            "title": "Softwares BIM para projetos e gestão da construção - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:57.736826+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/institucional",
+            "quote": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+            "title": "Institucional - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:57.862951+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/sala-de-imprensa",
+            "quote": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+            "title": "Sala de imprensa | AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.151752+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/sala-de-imprensa/software-projeto-estrutural-eberick-30-anos",
+            "quote": "Link corporativo publicado na página: https://www.instagram.com/altoqitecnologia",
+            "title": "O software catarinense que ajudou a erguer o Brasil: os 30 anos do Eberick | AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.501571+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    },
+    {
+      "field": "linkedin",
+      "value": "https://www.linkedin.com/company/altoqi-tecnologia",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/home",
+      "evidence": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+      "confidence": 91,
+      "assessment": {
+        "kind": "fact",
+        "rule": "official-social-link",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Link corporativo no site informado; LinkedIn regional normalizado, sem raspar rede social. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 25,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/home",
+            "quote": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+            "title": "Softwares BIM para projetos e gestão da construção - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:57.736826+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/institucional",
+            "quote": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+            "title": "Institucional - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:57.862951+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/sala-de-imprensa",
+            "quote": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+            "title": "Sala de imprensa | AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.151752+00:00",
+            "published_at": null,
+            "company_matched": true
+          },
+          {
+            "url": "https://www.altoqi.com.br/sala-de-imprensa/software-projeto-estrutural-eberick-30-anos",
+            "quote": "Link corporativo publicado na página: https://www.linkedin.com/company/altoqi-tecnologia",
+            "title": "O software catarinense que ajudou a erguer o Brasil: os 30 anos do Eberick | AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.501571+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    },
+    {
+      "field": "product_fit",
+      "value": "Fora do ICP direto · fornecedor de software para engenharia",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/carreiras",
+      "evidence": "desenvolve software",
+      "confidence": 76,
+      "assessment": {
+        "kind": "inference",
+        "rule": "public-activity-product-fit-v1",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "A empresa fornece tecnologia ao setor. Isso não comprova que seja escritório projetista ou construtora compradora. Avaliar parceria/uso interno antes de abordagem comercial. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 10,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "desenvolve software",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "playbook": "https://solution-playbook.vercel.app/escritorios/icp.html",
+        "input_fields": [
+          "website",
+          "cnpj"
+        ],
+        "missing_context": [
+          "Dor prioritária",
+          "Participação na compra",
+          "Capacidade de adoção"
+        ]
+      }
+    },
+    {
+      "field": "role",
+      "value": "Marketing Specialist",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/carreiras",
+      "evidence": "Maria Porfiro\nMarketing Specialist",
+      "confidence": 91,
+      "assessment": {
+        "kind": "fact",
+        "rule": "named-team-profile",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Nome completo e cargo aparecem juntos na página da empresa. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 25,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "Maria Porfiro\nMarketing Specialist",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    },
+    {
+      "field": "segment",
+      "value": "Outro",
+      "source_kind": "backfill",
+      "source_url": "https://www.altoqi.com.br/carreiras",
+      "evidence": "desenvolve software",
+      "confidence": 76,
+      "assessment": {
+        "kind": "inference",
+        "rule": "public-activity-segment-v1",
+        "basis": "d503ab1b93faa2a540e772986010fabf60cccde887622c213a7704202c1d7f74",
+        "reason": "Segmento sugerido pela atividade publicada; revisar empresas com múltiplas atuações. A página não informa a data de publicação; a data exibida é a da coleta.",
+        "factors": {
+          "atualidade": 6,
+          "identidade": 30,
+          "autoridade_da_fonte": 30,
+          "extração_ou_inferência": 10,
+          "corroboração_independente": 0
+        },
+        "version": "backfill-2026-10-03.1",
+        "blockers": [],
+        "evidence": [
+          {
+            "url": "https://www.altoqi.com.br/carreiras",
+            "quote": "desenvolve software",
+            "title": "Carreiras - AltoQi",
+            "official": true,
+            "accessed_at": "2026-10-03T23:38:58.026099+00:00",
+            "published_at": null,
+            "company_matched": true
+          }
+        ],
+        "input_fields": [
+          "website",
+          "cnpj"
+        ]
+      }
+    }
+  ]
+}

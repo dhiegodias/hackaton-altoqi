@@ -1,0 +1,12 @@
+{
+  "source_site": 30,
+  "source_other": 18,
+  "identity_match": 30,
+  "identity_unresolved": 5,
+  "fact": 25,
+  "estimate": 15,
+  "inference": 10,
+  "dated": 10,
+  "undated": 6,
+  "corroborated": 5
+}
