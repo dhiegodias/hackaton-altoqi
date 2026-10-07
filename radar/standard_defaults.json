@@ -1,0 +1,156 @@
+{
+  "revision": 1,
+  "roles": [
+    {
+      "label": "Engenheiro civil",
+      "aliases": [
+        "Engenheira civil",
+        "Eng. civil"
+      ]
+    },
+    {
+      "label": "Engenheiro",
+      "aliases": [
+        "Engenheira",
+        "Eng."
+      ]
+    },
+    {
+      "label": "Arquiteto",
+      "aliases": [
+        "Arquiteta",
+        "Arquiteto e urbanista",
+        "Arquiteta e urbanista"
+      ]
+    },
+    {
+      "label": "Projetista",
+      "aliases": []
+    },
+    {
+      "label": "BIM Manager",
+      "aliases": [
+        "Gerente BIM",
+        "Coordenador BIM",
+        "Coordenadora BIM",
+        "BIM coordinator"
+      ]
+    },
+    {
+      "label": "Coordenador",
+      "aliases": [
+        "Coordenadora",
+        "Coordenador de projetos",
+        "Coordenadora de projetos"
+      ]
+    },
+    {
+      "label": "Gerente",
+      "aliases": [
+        "Gerente de projetos",
+        "Manager"
+      ]
+    },
+    {
+      "label": "Diretor",
+      "aliases": [
+        "Diretora",
+        "Diretor de engenharia",
+        "Diretora de engenharia"
+      ]
+    },
+    {
+      "label": "Sócio",
+      "aliases": [
+        "Sócia",
+        "Sócio-diretor",
+        "Sócia-diretora",
+        "Fundador",
+        "Fundadora"
+      ]
+    },
+    {
+      "label": "CEO",
+      "aliases": [
+        "Chief Executive Officer",
+        "Presidente"
+      ]
+    },
+    {
+      "label": "CFO",
+      "aliases": [
+        "Chief Financial Officer"
+      ]
+    },
+    {
+      "label": "CTO",
+      "aliases": [
+        "Chief Technology Officer"
+      ]
+    },
+    {
+      "label": "Gestor de pessoas",
+      "aliases": [
+        "Head of People and Performance",
+        "Head de pessoas"
+      ]
+    },
+    {
+      "label": "Analista",
+      "aliases": []
+    },
+    {
+      "label": "Especialista",
+      "aliases": [
+        "Specialist",
+        "Marketing Specialist"
+      ]
+    },
+    {
+      "label": "Supervisor",
+      "aliases": [
+        "Supervisora"
+      ]
+    },
+    {
+      "label": "Técnico",
+      "aliases": [
+        "Técnica"
+      ]
+    }
+  ],
+  "segments": [
+    "Escritório de projetos",
+    "Construtora",
+    "Instaladora",
+    "Incorporadora",
+    "Escritório de gestão",
+    "Indústria",
+    "Fabricante",
+    "Arquitetura",
+    "Infraestrutura",
+    "Setor público",
+    "Outro"
+  ],
+  "council_domains": [
+    "caubr.gov.br",
+    "confea.org.br",
+    "crea-sc.org.br",
+    "creasp.org.br",
+    "crea-pr.org.br",
+    "crea-rj.org.br",
+    "crea-mg.org.br",
+    "crea-rs.org.br"
+  ],
+  "personal_email_domains": [
+    "gmail.com",
+    "hotmail.com",
+    "outlook.com",
+    "live.com",
+    "yahoo.com",
+    "yahoo.com.br",
+    "icloud.com",
+    "uol.com.br",
+    "bol.com.br"
+  ]
+}
