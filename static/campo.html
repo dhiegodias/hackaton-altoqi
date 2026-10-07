@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0e2829" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Busqi Campo" />
+    <meta
+      name="description"
+      content="Registre conversas comerciais e envie ao Busqi, mesmo depois de ficar sem conexão."
+    />
+    <title>Captura em campo · Busqi</title>
+    <link rel="icon" href="/static/icon.svg?v=busqi-1" type="image/svg+xml" />
+    <link rel="manifest" href="/campo.webmanifest" />
+    <link rel="apple-touch-icon" href="/static/campo-icon-180.png?v=busqi-1" />
+    <link
+      rel="preload"
+      href="/static/fonts/nunito-variable.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/static/brand.css?v=busqi-1" />
+    <link rel="stylesheet" href="/static/campo.css?v=busqi-1" />
+    <script src="/static/campo.js?v=busqi-1" defer></script>
+    <script src="/static/campo-pwa.js?v=busqi-1" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Voltar ao Busqi"
+          ><img
+            src="/static/brand/busqi-logo.svg?v=busqi-1"
+            width="140"
+            height="48"
+            alt="busqi"
+          /><span class="brand-context">EM CAMPO</span></a
+        >
+        <a class="back-link" href="/">← Backoffice</a>
+      </header>
+
+      <main>
+        <div class="connection-row">
+          <span id="connection" class="connection"
+            ><i></i>Verificando conexão</span
+          ><span id="mode" class="mode" hidden></span>
+        </div>
+        <section class="intro">
+          <p class="eyebrow">CADA CONVERSA CONTA</p>
+          <h1>Registre a conversa.</h1>
+          <p>
+            Leve o contexto da visita para o Busqi.<br />O que falta pode ficar
+            para depois.
+          </p>
+        </section>
+
+        <section class="pwa-panel" aria-label="Instalação e acesso offline">
+          <div class="pwa-heading">
+            <div>
+              <strong>Busqi na tela inicial</strong>
+              <p id="install-status">
+                Use no navegador ou instale sem passar pela loja de aplicativos.
+              </p>
+            </div>
+            <button
+              id="install-campo"
+              class="button secondary"
+              type="button"
+              hidden
+            >
+              Instalar
+            </button>
+          </div>
+          <details id="installation-help">
+            <summary>Como instalar e usar sem internet</summary>
+            <p>
+              Envie os registros pendentes antes de instalar pela primeira vez
+              ou trocar de navegador. A fila pertence a este endereço e ao
+              navegador/aplicativo em uso.
+            </p>
+            <p>
+              <strong>Android:</strong> use Instalar quando o botão aparecer ou
+              abra o menu do navegador e escolha Instalar aplicativo / Adicionar
+              à tela inicial.
+            </p>
+            <p>
+              <strong>iPhone:</strong> abra no Safari, toque em Compartilhar e
+              depois em Adicionar à Tela de Início. Ative Abrir como App, se
+              essa opção aparecer.
+            </p>
+            <p>
+              Abra conectado uma vez e aguarde “Acesso offline preparado”.
+              Depois, registre normalmente. A fila fica neste celular e envia ao
+              recuperar a conexão com o Busqi aberto ou na próxima abertura. Com
+              o aplicativo fechado, o envio automático não é garantido.
+            </p>
+            <p id="secure-install-note" hidden>
+              Para instalar e reabrir offline neste endereço, a equipe precisa
+              disponibilizar o Busqi por HTTPS.
+            </p>
+          </details>
+        </section>
+
+        <div
+          id="notice"
+          class="notice"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+        <section
+          id="login-panel"
+          class="login-panel"
+          aria-labelledby="login-title"
+          hidden
+        >
+          <div class="panel-heading">
+            <h2 id="login-title">Acesse para enviar</h2>
+            <button
+              id="close-login"
+              class="icon-button"
+              aria-label="Fechar acesso"
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+          <p>
+            Seus registros continuam salvos neste celular. Use a chave de acesso
+            da equipe.
+          </p>
+          <form id="login-form">
+            <label for="access-token">Chave de acesso</label
+            ><input
+              id="access-token"
+              type="password"
+              autocomplete="off"
+              required
+            /><button class="button primary" type="submit">
+              Entrar e sincronizar
+            </button>
+          </form>
+          <p id="login-error" class="field-error" role="alert" hidden></p>
+        </section>
+
+        <section
+          id="receipt"
+          class="receipt"
+          aria-labelledby="receipt-title"
+          hidden
+        >
+          <div class="receipt-mark" aria-hidden="true">✓</div>
+          <p class="eyebrow">CONVERSA REGISTRADA</p>
+          <h2 id="receipt-title">Recebido pelo Busqi</h2>
+          <p id="receipt-description"></p>
+          <div id="fit-result" class="fit-result" hidden>
+            <span class="small-label">PRÓXIMA CONVERSA · HIPÓTESE</span>
+            <h3 id="fit-group"></h3>
+            <p id="fit-route"></p>
+            <div id="fit-offers" class="tag-list"></div>
+            <ul id="fit-reasons"></ul>
+            <div id="fit-questions" class="next-questions" hidden>
+              <h4>Vale perguntar</h4>
+              <ul></ul>
+            </div>
+            <p class="fine-print">
+              Sugestão baseada no contexto declarado. Valide no diagnóstico
+              comercial.
+            </p>
+          </div>
+          <button id="new-capture" class="button primary" type="button">
+            Registrar outra conversa <span aria-hidden="true">＋</span>
+          </button>
+        </section>
+
+        <section
+          id="capture-panel"
+          class="capture-panel"
+          aria-label="Novo registro"
+        >
+          <nav class="steps" aria-label="Etapas da captura">
+            <button
+              id="step-contact"
+              class="step active"
+              type="button"
+              aria-current="step"
+            >
+              <span>1</span>Contato</button
+            ><span class="step-line"></span
+            ><button id="step-context" class="step" type="button">
+              <span>2</span>Contexto
+            </button>
+          </nav>
+          <form id="capture-form" novalidate>
+            <fieldset id="contact-fields">
+              <legend>Quem você conheceu?</legend>
+              <p class="section-help">
+                Comece pela empresa e pelo seu contato.
+              </p>
+              <label for="company"
+                >Empresa <span class="required">*</span></label
+              ><input
+                id="company"
+                name="company"
+                autocomplete="organization"
+                placeholder="Nome da empresa"
+                maxlength="250"
+                required
+              />
+              <label for="name"
+                >Nome do contato <span class="optional">opcional</span></label
+              ><input
+                id="name"
+                placeholder="Nome e sobrenome por extenso"
+                name="name"
+                autocomplete="name"
+                placeholder="Como a pessoa se chama?"
+                maxlength="200"
+              />
+              <label for="email"
+                >E-mail profissional
+                <span class="optional">opcional</span></label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="nome@empresa.com.br"
+                maxlength="250"
+              />
+              <div class="field-divider"></div>
+              <label for="consultant"
+                >Seu nome <span class="required">*</span></label
+              ><input
+                id="consultant"
+                name="consultant"
+                autocomplete="off"
+                placeholder="Quem conduziu a conversa?"
+                maxlength="100"
+                required
+              />
+              <p class="field-help">
+                Identifica a origem das informações no Busqi.
+              </p>
+              <details class="extra-fields">
+                <summary>
+                  Adicionar dados da empresa <span aria-hidden="true">＋</span>
+                </summary>
+                <div>
+                  <label for="website">Site</label
+                  ><input
+                    id="website"
+                    name="website"
+                    type="text"
+                    inputmode="url"
+                    autocapitalize="none"
+                    placeholder="empresa.com.br"
+                    maxlength="500"
+                  />
+                  <label for="role">Cargo do contato</label
+                  ><input
+                    id="role"
+                    list="role-options"
+                    name="role"
+                    placeholder="Ex.: Coordenadora de projetos"
+                    maxlength="150"
+                  />
+                  <datalist id="role-options"></datalist
+                  ><label for="phone">Telefone profissional informado</label
+                  ><input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    maxlength="30"
+                    placeholder="+55 (48) 99999-9999"
+                  />
+                  <p class="fine-print">
+                    Será conferido em fonte permitida antes de aprovação.
+                  </p>
+                  <label for="decision_role">Papel na decisão</label
+                  ><select id="decision_role" name="decision_role">
+                    <option value="">Ainda não sei</option>
+                    <option>Decisor confirmado</option>
+                    <option>Influenciador</option>
+                    <option>Usuário</option>
+                  </select>
+                  <p class="field-help">
+                    Marque decisor apenas se isso foi confirmado na conversa.
+                  </p>
+                  <label for="cnpj">CNPJ</label
+                  ><input
+                    id="cnpj"
+                    name="cnpj"
+                    autocapitalize="characters"
+                    spellcheck="false"
+                    placeholder="Numérico ou alfanumérico"
+                    maxlength="18"
+                  />
+                  <label for="employee_count">Pessoas na empresa</label
+                  ><input
+                    id="employee_count"
+                    name="employee_count"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
+                    max="10000000"
+                    step="1"
+                    placeholder="Quantidade informada"
+                  />
+                  <p class="field-help">
+                    Se recebeu apenas uma estimativa ou faixa, deixe em branco.
+                  </p>
+                </div>
+              </details>
+            </fieldset>
+
+            <fieldset id="context-fields" hidden>
+              <legend>O que move essa empresa?</legend>
+              <p class="section-help">
+                Registre o que ouviu. “Ainda não sei” mantém a pergunta em
+                aberto.
+              </p>
+              <label for="business_model">Como a empresa atua?</label
+              ><select id="business_model" name="business_model">
+                <option value="">Ainda não sei</option>
+                <option value="engineering_office">
+                  Escritório de projetos
+                </option>
+                <option value="builder">Construtora</option>
+                <option value="developer">Incorporadora</option>
+                <option value="management_service">
+                  Gestão de obras para terceiros
+                </option>
+                <option value="industrial_owner">
+                  Indústria com obras próprias
+                </option>
+                <option value="manufacturer">Fabricante</option>
+                <option value="public_owner">Órgão público dono da obra</option>
+              </select>
+
+              <div data-context="office" hidden>
+                <label for="building_design"
+                  >Faz projetos de engenharia predial?</label
+                ><select id="building_design" name="building_design">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+                <fieldset class="choice-fieldset">
+                  <legend>Quais disciplinas desenvolve?</legend>
+                  <div class="choice-list">
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="disciplines"
+                        value="structure"
+                      /><span>Estruturas</span></label
+                    ><label
+                      ><input
+                        type="checkbox"
+                        name="disciplines"
+                        value="installations"
+                      /><span>Instalações</span></label
+                    ><label
+                      ><input
+                        type="checkbox"
+                        name="disciplines"
+                        value="architecture"
+                      /><span>Arquitetura</span></label
+                    >
+                  </div>
+                </fieldset>
+                <label for="designers">Quantos projetistas trabalham lá?</label
+                ><input
+                  id="designers"
+                  name="designers"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="100000"
+                  step="1"
+                  placeholder="Quantidade confirmada"
+                />
+                <p class="field-help">
+                  Conte projetistas, não o total de pessoas da empresa.
+                </p>
+                <label for="sponsor">Há alguém liderando a mudança?</label
+                ><select id="sponsor" name="sponsor">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim, há um responsável interno</option>
+                  <option value="false">Não há responsável definido</option>
+                </select>
+                <label for="assisted_capacity"
+                  >O time tem tempo para uma implantação assistida?</label
+                ><select id="assisted_capacity" name="assisted_capacity">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim</option>
+                  <option value="false">Não neste momento</option>
+                </select>
+              </div>
+
+              <div data-context="construction" hidden>
+                <label for="building_work"
+                  >A empresa atua com edificações?</label
+                ><select id="building_work" name="building_work">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">
+                    Sim, constrói ou incorpora edificações
+                  </option>
+                  <option value="false">
+                    Não, atua com infraestrutura ou plantas
+                  </option>
+                </select>
+                <label for="absorbs_method"
+                  >Há alguém com tempo para aprender e operar o método?</label
+                ><select id="absorbs_method" name="absorbs_method">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim, alguém interno vai assumir</option>
+                  <option value="false">
+                    Não, prefere receber a entrega pronta
+                  </option>
+                </select>
+                <label for="uses_bim"
+                  >Já recebe e trabalha com projetos BIM?</label
+                ><select id="uses_bim" name="uses_bim">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim</option>
+                  <option value="false">Ainda não</option>
+                </select>
+                <label for="sector_autonomy"
+                  >O setor pode testar e decidir a compra?</label
+                ><select id="sector_autonomy" name="sector_autonomy">
+                  <option value="">Ainda não sei</option>
+                  <option value="true">Sim, tem autonomia</option>
+                  <option value="false">
+                    Não, depende de outras aprovações
+                  </option>
+                </select>
+              </div>
+
+              <div data-context="service" hidden>
+                <label for="service">Qual serviço entrega para terceiros?</label
+                ><select id="service" name="service">
+                  <option value="">Ainda não sei</option>
+                  <option value="budget">Orçamento</option>
+                  <option value="coordination">Coordenação de projetos</option>
+                  <option value="compatibility">Compatibilização BIM</option>
+                  <option value="planning">Planejamento</option>
+                </select>
+              </div>
+              <div id="pain-wrap" hidden>
+                <label for="pain">Qual é a principal dor hoje?</label
+                ><select id="pain" name="pain">
+                  <option value="">Ainda não sei</option>
+                </select>
+              </div>
+
+              <details
+                id="developer-discovery"
+                class="extra-fields optional-context"
+                hidden
+              >
+                <summary>
+                  Gestão interna da incorporadora
+                  <span aria-hidden="true">＋</span>
+                </summary>
+                <div>
+                  <p class="discovery-intro">
+                    Se isso apareceu na conversa, registre quem opera essas
+                    frentes. Não é necessário responder agora.
+                  </p>
+                  <label for="internal_project_management"
+                    >A empresa gerencia os projetos internamente?</label
+                  ><select
+                    id="internal_project_management"
+                    name="internal_project_management"
+                  >
+                    <option value="">Ainda não sei</option>
+                    <option value="true">Sim, a equipe interna gerencia</option>
+                    <option value="false">
+                      Não, essa gestão é terceirizada
+                    </option>
+                  </select>
+                  <label for="internal_budgeting"
+                    >A equipe interna elabora e acompanha o orçamento?</label
+                  ><select id="internal_budgeting" name="internal_budgeting">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">
+                      Sim, opera o orçamento internamente
+                    </option>
+                    <option value="false">
+                      Não, recebe o orçamento de terceiros
+                    </option>
+                  </select>
+                </div>
+              </details>
+
+              <details
+                id="budget-discovery"
+                class="extra-fields optional-context"
+                hidden
+              >
+                <summary>
+                  Preparação para o orçamento <span aria-hidden="true">＋</span>
+                </summary>
+                <div>
+                  <p class="discovery-intro">
+                    Estas respostas ajudam a identificar o próximo passo até um
+                    orçamento conectado ao projeto.
+                  </p>
+                  <label for="model_ready"
+                    >Há um modelo BIM pronto para ser utilizado?</label
+                  ><select id="model_ready" name="model_ready">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Ainda não</option>
+                  </select>
+                  <label for="eap_ready"
+                    >As etapas e os serviços da obra estão organizados em uma
+                    EAP?</label
+                  ><select id="eap_ready" name="eap_ready">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">Sim, a EAP está pronta</option>
+                    <option value="false">Ainda não</option>
+                  </select>
+                  <p class="field-help">
+                    EAP é a estrutura que organiza a obra em etapas e pacotes de
+                    trabalho.
+                  </p>
+                  <label for="quantities_ready"
+                    >Os quantitativos já estão prontos no Visus Cost?</label
+                  ><select id="quantities_ready" name="quantities_ready">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">
+                      Sim, estão prontos no Visus Cost
+                    </option>
+                    <option value="false">Ainda não</option>
+                  </select>
+                </div>
+              </details>
+
+              <details
+                id="custom-discovery"
+                class="extra-fields optional-context"
+                hidden
+              >
+                <summary>
+                  Necessidade de uma solução adaptada
+                  <span aria-hidden="true">＋</span>
+                </summary>
+                <div>
+                  <p class="discovery-intro">
+                    Preencha se a conversa envolveu uma necessidade fora da
+                    solução padrão. O time especializado avalia o escopo.
+                  </p>
+                  <label for="large_scale"
+                    >A empresa tem operação corporativa em grande escala?</label
+                  ><select id="large_scale" name="large_scale">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">Sim, atua em grande escala</option>
+                    <option value="false">Não</option>
+                  </select>
+                  <p class="field-help">
+                    Considere a operação declarada, como várias regiões ou
+                    muitos empreendimentos. Capital social não responde esta
+                    pergunta.
+                  </p>
+                  <label for="needs_customization"
+                    >A empresa precisa de uma adaptação da solução
+                    padrão?</label
+                  ><select id="needs_customization" name="needs_customization">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">
+                      Sim, a necessidade foi identificada
+                    </option>
+                    <option value="false">Não, a solução padrão atende</option>
+                  </select>
+                  <label for="adaptation_budget"
+                    >Existe verba prevista para essa adaptação?</label
+                  ><select id="adaptation_budget" name="adaptation_budget">
+                    <option value="">Ainda não sei</option>
+                    <option value="true">Sim, a empresa confirmou</option>
+                    <option value="false">Não há verba prevista</option>
+                  </select>
+                </div>
+              </details>
+
+              <details
+                id="maturity-discovery"
+                class="extra-fields optional-context"
+                hidden
+              >
+                <summary>
+                  Avaliar maturidade do escritório
+                  <span aria-hidden="true">＋</span>
+                </summary>
+                <div>
+                  <p class="discovery-intro">
+                    Opcional: sete dimensões para avaliar a prontidão para
+                    Engenharia e Gestão juntas. Escolha a descrição que foi
+                    confirmada na conversa.
+                  </p>
+                  <label for="maturity_technology">1. Tecnologia</label
+                  ><select id="maturity_technology" name="maturity_technology">
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Ferramentas isoladas ou pouco utilizadas
+                    </option>
+                    <option value="2">
+                      Ferramentas em uso, com pouca integração
+                    </option>
+                    <option value="3">Uso recorrente e padronizado</option>
+                  </select>
+                  <label for="maturity_processes">2. Processos</label
+                  ><select id="maturity_processes" name="maturity_processes">
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Informais e dependentes de pessoas
+                    </option>
+                    <option value="2">
+                      Alguns definidos, mas pouco medidos
+                    </option>
+                    <option value="3">Documentados, ativos e revisados</option>
+                  </select>
+                  <label for="maturity_collaboration">3. Colaboração</label
+                  ><select
+                    id="maturity_collaboration"
+                    name="maturity_collaboration"
+                  >
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Comunicação espalhada em vários canais
+                    </option>
+                    <option value="2">
+                      Alguma centralização, sem fluxo consistente
+                    </option>
+                    <option value="3">
+                      Ambiente comum e responsabilidades claras
+                    </option>
+                  </select>
+                  <label for="maturity_management">4. Gestão</label
+                  ><select id="maturity_management" name="maturity_management">
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Poucos indicadores ou controle manual
+                    </option>
+                    <option value="2">
+                      Indicadores parciais e acompanhamento
+                    </option>
+                    <option value="3">
+                      Indicadores usados para tomar decisões
+                    </option>
+                  </select>
+                  <label for="maturity_adoption">5. Adoção pela equipe</label
+                  ><select id="maturity_adoption" name="maturity_adoption">
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Resistência ou uso por poucas pessoas
+                    </option>
+                    <option value="2">
+                      Parte da equipe utiliza as ferramentas
+                    </option>
+                    <option value="3">Uso recorrente por toda a equipe</option>
+                  </select>
+                  <label for="maturity_scalability"
+                    >6. Capacidade de crescer</label
+                  ><select
+                    id="maturity_scalability"
+                    name="maturity_scalability"
+                  >
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Crescimento depende muito dos sócios
+                    </option>
+                    <option value="2">
+                      Há coordenação, com gargalos relevantes
+                    </option>
+                    <option value="3">Operação previsível e replicável</option>
+                  </select>
+                  <label for="maturity_automation">7. IA e automação</label
+                  ><select id="maturity_automation" name="maturity_automation">
+                    <option value="">Ainda não sei</option>
+                    <option value="1">
+                      Interesse inicial, sem base organizada
+                    </option>
+                    <option value="2">
+                      Algumas oportunidades já identificadas
+                    </option>
+                    <option value="3">
+                      Processos e dados prontos para automatizar
+                    </option>
+                  </select>
+                  <p
+                    id="maturity-progress"
+                    class="maturity-progress"
+                    aria-live="polite"
+                  >
+                    0 de 7 dimensões preenchidas
+                  </p>
+                  <p class="field-help">
+                    A avaliação só é enviada quando as sete dimensões estão
+                    preenchidas. Você pode salvar a conversa sem ela.
+                  </p>
+                </div>
+              </details>
+              <div id="routing-note" class="routing-note" hidden></div>
+              <div class="context-note">
+                <span aria-hidden="true">↗</span>
+                <p>
+                  Esse contexto ajuda a encontrar a próxima conversa e a oferta
+                  mais adequada.
+                </p>
+              </div>
+            </fieldset>
+            <div id="form-error" class="field-error" role="alert" hidden></div>
+            <div class="form-end">
+              <span id="draft-status">Rascunho salvo automaticamente</span
+              ><button id="clear-draft" type="button" class="text-button">
+                Limpar
+              </button>
+            </div>
+            <footer id="action-bar" class="action-bar">
+              <button
+                id="previous-step"
+                class="button secondary"
+                type="button"
+                hidden
+              >
+                Voltar</button
+              ><button id="continue-step" class="button primary" type="button">
+                Continuar <span aria-hidden="true">→</span></button
+              ><button
+                id="save-capture"
+                class="button primary"
+                type="submit"
+                hidden
+              >
+                Salvar conversa <span aria-hidden="true">↗</span>
+              </button>
+            </footer>
+          </form>
+        </section>
+
+        <section class="queue-section" aria-labelledby="queue-title">
+          <div class="queue-heading">
+            <h2 id="queue-title">
+              Neste celular <span id="queue-count" class="count">0</span>
+            </h2>
+            <button id="sync-now" class="text-button" type="button">
+              Sincronizar
+            </button>
+          </div>
+          <p class="queue-help">
+            Só sai da fila quando o Busqi confirma o recebimento.
+          </p>
+          <div id="queue-list" aria-live="polite"></div>
+          <button id="view-receipt" class="text-button" type="button" hidden>
+            Ver último recibo
+          </button>
+          <p id="offline-readiness" class="fine-print">
+            Preparando o acesso offline…
+          </p>
+          <p id="storage-status" class="fine-print" role="status">
+            Os registros pendentes ficam no armazenamento deste navegador.
+          </p>
+          <button id="persist-storage" class="text-button" type="button" hidden>
+            Proteger armazenamento offline
+          </button>
+          <button id="open-login" class="text-button" type="button" hidden>
+            Acessar com a chave da equipe
+          </button>
+        </section>
+        <p class="privacy-note">
+          Use informações profissionais compartilhadas na conversa. Os dados
+          salvos neste celular ficam disponíveis neste navegador.
+        </p>
+      </main>
+    </div>
+    <noscript
+      ><p class="notice">
+        Ative o JavaScript para salvar registros e usar a fila offline.
+      </p></noscript
+    >
+  </body>
+</html>

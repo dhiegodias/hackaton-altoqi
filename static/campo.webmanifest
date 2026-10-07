@@ -1,0 +1,27 @@
+{
+  "id": "/campo",
+  "name": "Busqi · Captura em campo",
+  "short_name": "Busqi Campo",
+  "description": "Registre conversas, salve no celular e envie ao Busqi quando a conexão voltar.",
+  "lang": "pt-BR",
+  "start_url": "/campo",
+  "scope": "/campo",
+  "display": "standalone",
+  "background_color": "#eef4f0",
+  "theme_color": "#0e2829",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/static/campo-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/campo-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
