@@ -1,10 +1,13 @@
-# Execute separadamente: docker compose -f compose.tunnel.yaml up -d
+# Execute separadamente: docker compose -f compose.tunnel.yaml up --build -d
 # A aplicação precisa estar rodando. Este arquivo não altera app, workers ou banco.
 name: radar-tunnel
 
 services:
   tunnel:
-    image: cloudflare/cloudflared:2026.9.3
+    build: ./tunnel
+    image: busqi-cloudflared:2026.9.3-session1
+    environment:
+      BUSQI_TUNNEL_SESSION_DURATION: "${TUNNEL_SESSION_DURATION:-24h}"
     # Loopback do app preserva HTTPS via proxy sem confiar em qualquer IP da rede.
     network_mode: "container:${RADAR_TUNNEL_CONTAINER:-radar-crm-app-1}"
     command:

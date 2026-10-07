@@ -56,6 +56,7 @@ Edite `.env` e reaplique com `docker compose up --build -d --wait`. O arquivo co
 | `RADAR_ACCESS_TOKEN` | Chave de acesso da equipe, obrigatória quando `DEMO_MODE=false`. |
 | `COOKIE_SECURE` | `false` no HTTP local; `true` ao usar HTTPS. |
 | `TUNNEL_ALLOWED_EMAILS` | E-mails ou domínio autorizados no link temporário; obrigatório apenas no Compose do túnel. |
+| `TUNNEL_SESSION_DURATION` | Sessão do túnel após login por e-mail: `24h`. Aceita de `1h` a `72h`. |
 | `RADAR_TUNNEL_CONTAINER` | Container da aplicação ao qual o túnel se conecta; padrão `radar-crm-app-1`. |
 | `OPENAI_API_KEY` / `OPENAI_MODEL` | Pesquisa e interpretação por IA opcionais. |
 | `HUBSPOT_ACCESS_TOKEN` | Token do portal para importar contatos e, se habilitado, enviar alterações. |
@@ -98,7 +99,7 @@ O [Quick Tunnel da Cloudflare](https://developers.cloudflare.com/tunnel/get-star
 3. Inicie o túnel e consulte o link:
 
 ```bash
-docker compose -f compose.tunnel.yaml up -d
+docker compose -f compose.tunnel.yaml up --build -d
 docker compose -f compose.tunnel.yaml logs --tail=50 tunnel
 ```
 
@@ -108,6 +109,8 @@ Se você usa outro projeto Compose, confira o nome do container com `docker ps` 
 
 O controle por e-mail é do Cloudflare, não cria usuários no Busqi. Se `RADAR_ACCESS_TOKEN` também estiver configurado, o login da equipe continuará sendo exigido dentro da aplicação; para esse uso por HTTPS, configure `COOKIE_SECURE=true` e reaplique o Compose da aplicação antes de iniciar o túnel.
 
+**A sessão do hackathon dura 24 horas após o login.** Para alterar, configure `TUNNEL_SESSION_DURATION=48h`, por exemplo, e recrie o túnel. O primeiro build compila uma imagem local a partir do código oficial do `cloudflared` 2026.9.3, fixado por commit e checksum. A alteração em `tunnel/` estabelece a duração da sessão local independentemente do prazo curto da autenticação usada para validar o e-mail. Ela mantém a verificação da assinatura, identidade vigente no login, lista de e-mails, proteção do cookie e revogação ao reiniciar. É uma adaptação deste projeto, não uma opção da imagem oficial. O build executa os testes de autenticação, incluindo acesso após oito horas, expiração em 24 horas, e-mail não autorizado e sessão adulterada.
+
 **O endereço muda ao recriar ou reiniciar o túnel.** Rascunhos, instalação da PWA e fila offline pertencem ao endereço usado pelo celular. Envie os registros pendentes antes de trocar de link; eles não migram automaticamente para o novo endereço. Se a sessão do Cloudflare expirar, será necessário entrar novamente com internet para enviar a fila. Para uso contínuo da PWA, prefira um [túnel com domínio fixo](https://developers.cloudflare.com/tunnel/get-started/).
 
 ```bash
@@ -115,7 +118,7 @@ O controle por e-mail é do Cloudflare, não cria usuários no Busqi. Se `RADAR_
 docker compose -f compose.tunnel.yaml stop
 
 # Depois de recriar o container app ou alterar os e-mails autorizados:
-docker compose -f compose.tunnel.yaml up -d --force-recreate
+docker compose -f compose.tunnel.yaml up --build -d --force-recreate
 docker compose -f compose.tunnel.yaml logs --tail=50 tunnel
 ```
 
@@ -165,6 +168,7 @@ A suíte usa schemas PostgreSQL isolados e um destino HTTP de teste com estado p
 | `static/` | Interface Busqi, PWA, logo e fonte local com licença. |
 | `tests/` | Testes e fixtures necessárias à sua execução. |
 | `compose.yaml` / `Dockerfile` | Inicialização completa pelo Docker. |
+| `compose.tunnel.yaml` / `tunnel/` | Link temporário com login por e-mail e duração da sessão configurável. |
 | `.env.example` | Opções documentadas sem credenciais. |
 
 Materiais de pesquisa, vídeos, relatórios e evidências de desenvolvimento ficam fora do repositório e não são necessários para executar a aplicação. O logo utilizado pela interface está incluído nos próprios ativos de `static/`.

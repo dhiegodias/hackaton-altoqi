@@ -1,0 +1,2 @@
+# Unified diffs use a leading space before context (including tabs and blank lines).
+tunnel/*.patch whitespace=-blank-at-eol,-space-before-tab
