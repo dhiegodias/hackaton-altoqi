@@ -101,6 +101,26 @@ def example_dns(monkeypatch):
 
 
 @pytest.fixture
+def personal_email_dns(monkeypatch):
+    """DNS boundary for personal-mail journeys; never query fictional mailboxes."""
+    original = sources.fetch_public
+    calls = []
+
+    def resolve(url, *args, **kwargs):
+        parsed = urlparse(url)
+        domain = parse_qs(parsed.query).get("name", [""])[0]
+        if parsed.hostname == "dns.google" and domain in {"gmail.com", "outlook.com", "yahoo.com"}:
+            calls.append(url)
+            return url, json.dumps(
+                {"Status": 0, "Answer": [{"type": 15, "data": "10 mx.mail-provider.invalid."}]}
+            )
+        return original(url, *args, **kwargs)
+
+    monkeypatch.setattr(sources, "fetch_public", resolve)
+    return calls
+
+
+@pytest.fixture
 def api_client(database, monkeypatch):
     monkeypatch.setenv("DEMO_MODE", "true")
     monkeypatch.delenv("RADAR_ACCESS_TOKEN", raising=False)

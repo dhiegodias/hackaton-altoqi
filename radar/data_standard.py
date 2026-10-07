@@ -168,10 +168,8 @@ def email_domain(email, cfg, fetch=None):
     if not email:
         return {}
     domain = email.rsplit("@", 1)[1].encode("idna").decode("ascii")
-    if domain in cfg["personal_email_domains"]:
-        raise ValueError(
-            "Informe um e-mail corporativo; este domínio consta na lista de e-mails pessoais."
-        )
+    # Personal addresses are valid identifiers too. Provider domains only limit
+    # employer inference in outbound research, never intake or domain validation.
     if not re.fullmatch(r"[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,63}", domain):
         raise ValueError("Domínio de e-mail inválido.")
     cached = _dns_cache.get(domain)

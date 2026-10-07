@@ -272,6 +272,45 @@ def test_fresh_research_does_not_resurrect_rejection_or_multiply_candidates(api_
     )
 
 
+@pytest.mark.parametrize("domain", ["gmail.com", "outlook.com", "yahoo.com"])
+def test_personal_email_can_be_captured_and_researched(
+    api_client, database, monkeypatch, personal_email_dns, domain
+):
+    response = api_client.post(
+        "/api/captures",
+        headers={"Idempotency-Key": "personal-email-research"},
+        json={
+            "name": LEAD["name"],
+            "company": LEAD["company"],
+            "data": LEAD["data"],
+            "email": "marina.ficticia@" + domain,
+        },
+    )
+    assert response.status_code == 200, response.text
+    ident = response.json()["id"]
+    detail = api_client.get(f"/api/leads/{ident}").json()
+    assert detail["identity_checks"]["email"]["status"] == "active_domain"
+    assert not detail["identity_checks"]["email"]["mailbox_verified"]
+    assert len(personal_email_dns) == 1
+    pages = []
+
+    def fetch(url):
+        pages.append(url)
+        return url, PAGES[url]
+
+    monkeypatch.setattr(research.sources, "fetch_public", fetch)
+    api_client.put("/api/sources", json={"website": True, "backfill": True}).raise_for_status()
+    assert api_client.post("/api/scan", json={"ids": [ident]}).json()["queued"] == 1
+    assert worker.run_one()
+    detail = api_client.get(f"/api/leads/{ident}").json()
+    assert detail["jobs"][0]["status"] == "done"
+    role = next(s for s in detail["suggestions"] if s["field"] == "role")
+    assert role["source_url"] == SITE + "/equipe" and role["status"] == "pending"
+    assert "Marina Souza" in role["evidence"] and role["confidence"] > 0
+    assert SITE + "/equipe" in pages
+    assert "role" not in detail["data"]
+
+
 def test_worker_autofills_only_when_enabled_and_honors_suppression(
     api_client, database, monkeypatch
 ):

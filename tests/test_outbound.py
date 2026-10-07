@@ -103,6 +103,74 @@ def test_email_seed_enriches_company_without_inventing_a_person(database, api_cl
     assert next(p["value"] for p in person["proposals"] if p["field"] == "employee_count") == 45
 
 
+def test_personal_email_search_can_be_promoted_after_source_confirmation(
+    database, api_client, personal_email_dns, monkeypatch
+):
+    email = "ana.ficticia@gmail.com"
+    quote = "Ana Oliveira\nBIM Manager\n" + email
+    html = HTML.replace("<p>BIM Manager</p>", "<p>BIM Manager</p><p>" + email + "</p>")
+    dns_transport = outbound_research.sources.fetch_public
+    calls, queries = [], []
+
+    def fetch(url):
+        if url.startswith("https://dns.google/"):
+            return dns_transport(url)
+        calls.append(url)
+        assert url == URL
+        return url, html
+
+    def search(query):
+        queries.append(query)
+        return [
+            {
+                "name": "Ana Oliveira",
+                "company": "Obras Fictícias",
+                "role": "BIM Manager",
+                "email": email,
+                "website": URL,
+                "source_url": URL,
+                "quote": quote,
+            }
+        ]
+
+    monkeypatch.setattr(outbound_research.sources, "fetch_public", fetch)
+    monkeypatch.setattr(outbound_provider, "configured", lambda: True)
+    monkeypatch.setattr(outbound_provider, "search", search)
+    ident = start(api_client, mode="email", query=email, website="", company="")
+    person = finish(api_client, ident)["result"]["candidates"][0]
+    assert queries[0]["query"] == email and calls == [URL]
+    assert person["identity_verified"] and person["quote"] == quote
+    response = add(api_client, ident, person)
+    assert response.status_code == 200, response.text
+    lead = api_client.get("/api/leads/" + response.json()["id"]).json()
+    assert lead["email"] == email and lead["company"] == "Obras Fictícias"
+    assert lead["data"]["website"] == URL
+    assert lead["suggestions"] and all(s["status"] == "pending" for s in lead["suggestions"])
+    assert response.json()["remote_writes"] == 0 and len(personal_email_dns) == 1
+
+
+def test_team_personal_domain_is_not_used_as_company_site(database, api_client, public_site):
+    with database() as conn:
+        cfg = data_standard.config(conn)
+        cfg["personal_email_domains"].append("caixapessoal.invalid")
+        data_standard.save(conn, {k: v for k, v in cfg.items() if k != "revision"}, "Equipe")
+    ident = start(api_client, mode="email", query="ana@caixapessoal.invalid", website="")
+    assert outbound.run_one()
+    result = api_client.get("/api/outbound/" + ident).json()
+    assert result["status"] == "failed" and "não configurada" in result["error"]
+    assert public_site == []
+    # An explicit company website still allows the same address through the full journey.
+    ident = start(api_client, mode="email", query="ana@caixapessoal.invalid")
+    person = finish(api_client, ident)["result"]["candidates"][0]
+    assert person["email_only"] and not person["identity_verified"]
+    response = add(api_client, ident, person)
+    assert response.status_code == 200, response.text
+    assert (
+        api_client.get("/api/leads/" + response.json()["id"]).json()["email"]
+        == "ana@caixapessoal.invalid"
+    )
+
+
 def test_team_role_is_found_in_outbound_and_can_be_reviewed(database, api_client, monkeypatch):
     with database() as conn:
         cfg = data_standard.config(conn)

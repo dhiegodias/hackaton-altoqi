@@ -98,12 +98,20 @@ def prospect_lead(item):
     }
 
 
-def direct_candidates(query, policy, config, cache, standard_config=None):
+def company_website(query, standard_config=None):
     website = query["website"]
     if not website and query["mode"] == "email":
         domain = query["query"].split("@", 1)[1]
-        if domain not in MAIL_PROVIDERS:
+        personal_domains = MAIL_PROVIDERS | set(
+            (standard_config or {}).get("personal_email_domains", [])
+        )
+        if domain not in personal_domains:
             website = "https://" + domain
+    return website
+
+
+def direct_candidates(query, policy, config, cache, standard_config=None):
+    website = company_website(query, standard_config)
     if not website:
         return []
     if website not in cache:
@@ -255,9 +263,7 @@ def run(query, policy, config, source_config, allow=lambda item: True, standard_
             notes.append(
                 "O site informado não pôde ser consultado. Confira o endereço ou use a busca web."
             )
-    direct_lookup_possible = bool(query["website"]) or (
-        query["mode"] == "email" and query["query"].split("@", 1)[1] not in MAIL_PROVIDERS
-    )
+    direct_lookup_possible = bool(company_website(query, standard_config))
     if not items and not outbound_provider.configured() and not direct_lookup_possible:
         raise ValueError(
             "Busca web não configurada. Configure OPENAI_API_KEY e OPENAI_MODEL no servidor, ou informe empresa e site para pesquisa direta."

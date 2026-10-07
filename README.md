@@ -74,6 +74,8 @@ Edite `.env` e reaplique com `docker compose up --build -d --wait`. O arquivo co
 
 A pesquisa pública usa BrasilAPI para CNPJ numérico, IBGE para cidade/UF e páginas públicas permitidas conforme as regras de cada campo. Cargo não comprova poder de decisão; fit é uma hipótese comercial explicada. As listas de cargos, segmentos, fontes permitidas, pesos e limiares podem ser configuradas na interface.
 
+E-mails pessoais e corporativos são aceitos no cadastro, nas importações e na prospecção, mantendo a validação de formato e domínio ativo no cadastro. Na pesquisa direta, domínios de provedores como Gmail e Outlook não são usados como site da empresa. A lista em **Padrão de dados** permite incluir outros provedores; ela não bloqueia contatos. Para pesquisar somente pelo e-mail pessoal, configure a busca web ou informe também o site da empresa.
+
 Sem credenciais OpenAI, a pesquisa usa os conectores públicos e regras implementadas. Para a etapa opcional de IA, configure chave e modelo compatível com **Responses, web search e saída estruturada**, e habilite as opções na interface. Os textos e identificadores necessários à pesquisa são enviados ao provedor quando essa opção está ativa. A aplicação não raspa LinkedIn ou Instagram; links pessoais e empresariais são tratados separadamente.
 
 ### HubSpot

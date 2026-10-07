@@ -29,7 +29,7 @@ export function createStandardUI({
       ) +
       `<section class="panel source-card"><h2>Regras de preenchimento</h2><div class="file-preview standard-rules"><table><thead><tr><th>Campo</th><th>Regra</th><th>Fonte</th></tr></thead><tbody>
       <tr><td>Nome completo</td><td>Capitalização, nome e sobrenome por extenso; iniciais recusadas</td><td>Entrada da equipe, lista ou HubSpot</td></tr>
-      <tr><td>E-mail corporativo</td><td>Formato e DNS ativo; domínio pessoal bloqueado</td><td>Entrada da equipe, lista ou HubSpot</td></tr>
+      <tr><td>E-mail pessoal ou corporativo</td><td>Formato válido e domínio ativo</td><td>Entrada da equipe, lista ou HubSpot</td></tr>
       ${Object.entries(standard.sources)
         .map(
           ([key, sources]) =>
@@ -41,7 +41,7 @@ export function createStandardUI({
       ${input("Cargos e variações", "roles", configuration.roles.map((item) => item.label + (item.aliases.length ? " | " + item.aliases.join(", ") : "")).join("\n"))}
       ${input("Segmentos", "segments", configuration.segments.join("\n"))}
       ${input("Domínios de conselhos permitidos", "council_domains", configuration.council_domains.join("\n"), "A equipe deve cadastrar somente domínios oficiais CAU/CREA. O Busqi não contorna login ou CAPTCHA.")}
-      ${input("Domínios de e-mail pessoal bloqueados", "personal_email_domains", configuration.personal_email_domains.join("\n"))}</div>
+      ${input("Domínios de e-mail pessoal", "personal_email_domains", configuration.personal_email_domains.join("\n"), "E-mails desses domínios são aceitos para cadastro e pesquisa. A lista impede apenas que o provedor de e-mail seja usado como site da empresa na pesquisa direta.")}</div>
       <label class="form-field">Responsável<input name="reviewer" required maxlength="100"></label><button class="button primary">Salvar padrão</button></form>
       <section class="panel source-card" style="margin-top:24px"><h2>Privacidade e eliminação</h2><p>Bloquear mantém o histórico. Eliminar remove os dados do contato deste Busqi e mantém somente identificadores protegidos para impedir novo cadastro. Esse bloqueio é dado pseudonimizado, não anonimização.</p><p>${privacy.erasure_count} eliminações registradas sem nome ou e-mail no recibo.</p><h3>Contatos bloqueados</h3>${privacy.suppressed.map((item) => `<div class="sync-row"><span>${esc(item.name)} · ${esc(item.company)}</span><button class="button small" data-action="open-lead" data-id="${item.id}">Abrir para eliminar</button></div>`).join("") || '<p class="muted">Nenhum contato bloqueado.</p>'}<p class="muted">A eliminação local não apaga automaticamente HubSpot, backups nem arquivos já baixados. Listas pendentes e exportações armazenadas também são removidas por precaução. Dispositivos offline verificam os bloqueios quando voltam a se conectar.</p></section>`
     );

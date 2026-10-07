@@ -145,8 +145,9 @@ def test_email_dns_null_mx_nxdomain_and_temporary_failure(database):
     result = standard.email_domain("PESSOA@EMPRESA-QA.INVALID", cfg, fetch=fetch)
     assert result["status"] == "active_domain" and not result["mailbox_verified"]
     assert len(calls) == 3 and all("pessoa" not in url for url in calls)
-    with pytest.raises(ValueError, match="corporativo"):
-        standard.email_domain("pessoa@gmail.com", cfg, fetch=fetch)
+    personal = standard.email_domain("pessoa@gmail.com", cfg, fetch=fetch)
+    assert personal["status"] == "active_domain" and not personal["mailbox_verified"]
+    assert len(calls) == 6
 
 
 def test_intake_does_not_certify_source_and_registry_checks_identity_and_ibge(database):

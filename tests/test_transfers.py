@@ -111,6 +111,48 @@ def test_replay_with_changed_upload_is_rejected(database, api_client):
     assert response.status_code == 409
 
 
+@pytest.mark.parametrize("extension", ["csv", "xlsx"])
+def test_personal_emails_import_through_queue_and_deduplicate(
+    database, api_client, personal_email_dns, extension
+):
+    rows = [
+        ["Nome", "Email"],
+        ["Ana Fictícia", "ANA.FICTICIA@gmail.com"],
+        ["Bruna Fictícia", "bruna.ficticia@outlook.com"],
+        ["Ana Fictícia", "ana.ficticia@gmail.com"],
+        ["Email Inválido", "invalido@@gmail.com"],
+    ]
+    if extension == "xlsx":
+        workbook = Workbook(write_only=True)
+        sheet = workbook.create_sheet()
+        for row in rows:
+            sheet.append(row)
+        buffer = io.BytesIO()
+        workbook.save(buffer)
+        content = buffer.getvalue()
+    else:
+        buffer = io.StringIO()
+        csv.writer(buffer).writerows(rows)
+        content = buffer.getvalue().encode()
+    response = api_client.post(
+        "/api/import/preview", files={"file": ("pessoais." + extension, content)}
+    )
+    assert response.status_code == 202, response.text
+    ident = response.json()["id"]
+    drain(api_client, ident, "awaiting_mapping")
+    api_client.post(
+        f"/api/transfers/{ident}/start", json={"mapping": {"Nome": "name", "Email": "email"}}
+    ).raise_for_status()
+    done = drain(api_client, ident)
+    assert (done["created_count"], done["duplicate_count"], done["error_count"]) == (2, 1, 1)
+    leads = api_client.get("/api/leads").json()
+    assert {lead["email"] for lead in leads} == {
+        "ana.ficticia@gmail.com",
+        "bruna.ficticia@outlook.com",
+    }
+    assert len(personal_email_dns) == 2
+
+
 def test_two_workers_cannot_claim_same_batch(database, api_client):
     upload(api_client)
     with ThreadPoolExecutor(max_workers=2) as pool:
